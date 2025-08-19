@@ -10,4 +10,4 @@
 ## Sobre
 
 Objetivo: Desenvolver API RESTful robusta e escalável utilizando o framework Laravel e a linguagem PHP. 
-A API será projetada para atender às necessidades do sistema BusinessIA, fornecendo endpoints eficientes para gerenciamento de dados, integração com outros sistemas e suporte a operações CRUD (Create, Read, Update, Delete). A 
+A API será projetada para atender às necessidades do sistema BusinessIA, fornecendo endpoints eficientes para gerenciamento de dados, integração com outros sistemas e suporte a operações CRUD (Create, Read, Update, Delete).
