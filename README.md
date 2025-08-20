@@ -16,12 +16,12 @@ Como roda o projeto:
 ```bash
     php artisan serve
 ```
-<br>
+
 Como criar Controller:
 ```bash
     php artisan make:controller --api
 ```
-<br>
+
 Como verificar rotas:
 ```bash
     php artisan route:list --path=api
@@ -29,3 +29,5 @@ Como verificar rotas:
     Para fazer a Rota Get, Post.. de uma única vez, use o comando:
     Route::apiResource('/users', UserController::class);
 ```
+<img width="638" height="164" alt="image" src="https://github.com/user-attachments/assets/bf884b0b-e0cb-475f-a09b-27b2acc76567" />
+
