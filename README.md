@@ -11,3 +11,21 @@
 
 Objetivo: Desenvolver API RESTful robusta e escalável utilizando o framework Laravel e a linguagem PHP. 
 A API será projetada para atender às necessidades do sistema BusinessIA, fornecendo endpoints eficientes para gerenciamento de dados, integração com outros sistemas e suporte a operações CRUD (Create, Read, Update, Delete).
+
+Como roda o projeto:
+```bash
+    php artisan serve
+```
+<br>
+Como criar Controller:
+```bash
+    php artisan make:controller --api
+```
+<br>
+Como verificar rotas:
+```bash
+    php artisan route:list --path=api
+
+    Para fazer a Rota Get, Post.. de uma única vez, use o comando:
+    Route::apiResource('/users', UserController::class);
+```
