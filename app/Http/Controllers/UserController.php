@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -12,10 +14,17 @@ class UserController extends Controller
      * Display a listing of the resource.
      * ======== Listar todos os usuários ========
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return response()->json($users, 200);
+        // $users = User::all();
+        $currentPage = $request->get('current_page') ?? 1; // Fazendo o esquema de navegação de lista,
+        $regsPerPage =  3;  // Registros por página
+
+        $skip = ($currentPage - 1) * $regsPerPage; // pagina 1 = 0 --- 2 = 3
+
+        $users = User::skip($skip)->take($regsPerPage)->orderByDesc('id')->get();
+
+        return response()->json($users->toResourceCollection(), 200);
     }
 
     /**
@@ -29,12 +38,15 @@ class UserController extends Controller
        try {
         $user = new User();
         $user->fill($data);
-        dd($user); 
-        return response()->json($user, 201);
+        $user->password = Hash::make(123);
+        $user->save();
+
+        // dd($user);  // Para verificar se os dados estão corretos antes de salvar
+        return response()->json($user->toResource(), 201);
         dd($user);
         } catch (\Exception $ex) {
             return response()->json([
-                'message' => 'Erro ao criar usuário',
+                'message' => 'Falha ao inserir usuário',
                 'error' => $ex->getMessage()
             ], 400);
         }
@@ -48,7 +60,7 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrfail($id);
-            return response()->json($user, 200);
+            return response()->json($user->toResource(), 200);
         } catch (\Exception $ex) {
             return response()->json([
                 'message' => 'User not found',
@@ -60,9 +72,22 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+
+        try {
+            $user = User::findOrFail($id);
+            $user->update($data);
+
+            return response()->json($user->toResource(), 200);
+            dd($user);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'message' => 'Falha ao alterar o usuário',
+                'error' => $ex->getMessage()
+            ], 400);
+        }
     }
 
     /**
@@ -70,6 +95,18 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        try {
+            $removed = User::destroy($id);
+            if (!$removed) {
+                return response()->json(['message' => 'Usuário não encontrado ou já foi deletado'], 404);
+            }
+            return response()->json(null, 204);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'message' => 'Falha ao remover o usuário',
+                'error' => $ex->getMessage()
+            ], 400);
+        }
     }
 }
