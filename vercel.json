@@ -20,7 +20,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://businessia-api.vercel.app",
+        "APP_URL": "https://business-ia-api.vercel.app",
         "APP_KEY": "base64:r1JyW1IMmuaL02KmdsRDVh5F9TTO+rrnfgoSdDiKymo=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
