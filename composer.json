@@ -60,7 +60,14 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
+        ],
+        "scripts": {
+        "vercel": [
+            "touch /tmp/database.sqlite",
+            "php artisan migrate --force",
+            "php artisan db:seed --force"
         ]
+    }
     },
     "extra": {
         "laravel": {
