@@ -1,15 +1,25 @@
 {
   "version": 2,
+  "framework": null,
   "builds": [
     {
-      "src": "routes/api.php",
+      "src": "public/index.php",
+      "use": "@vercel/php@0.7.0"
+    },
+    {
+      "src": "vite.config.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "(.*)",
-      "dest": "routes/api.php"
+      "src": "/(.*)",
+      "dest": "public/index.php"
     }
-  ]
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "APP_KEY": "base64:<sua-chave-app-key>",
+    "APP_URL": "https://business-ia-api.vercel.app"
+  }
 }

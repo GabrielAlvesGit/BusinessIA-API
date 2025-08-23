@@ -3,9 +3,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
-        "dev": "vite",
-        "vercel-build": "php artisan migrate"
+      "dev": "vite",
+     "build": "vite build",
+     "vercel-build": "composer install && php artisan migrate --force && npm install && npm run build"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
