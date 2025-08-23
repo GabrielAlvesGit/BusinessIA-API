@@ -1,13 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/test-db', function () {
-    try {
-        \DB::connection()->getPdo();
-        return response()->json(['message' => 'Conexão com o banco de dados Neon estabelecida com sucesso!']);
-    } catch (\Exception $e) {
-        return response()->json(['error' => 'Erro ao conectar: ' . $e->getMessage()], 500);
-    }
-});
+// <! ----- IGNORE - Rotas de teste --- -->
+// Route::get('/users', [UserController::class, 'index']);
+// Route::post('/users', [UserController::class, 'store']);
+
+Route::apiResource('/users', UserController::class);
