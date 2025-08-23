@@ -1,17 +1,31 @@
 {
   "version": 2,
+  "framework": null,
   "builds": [
     {
       "src": "public/index.php",
+      "use": "@vercel/static-build",
+      "config": {
+        "installCommand": "apt-get update && apt-get install -y php php-pgsql php-mbstring php-xml php-bcmath && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && composer install",
+        "buildCommand": "php artisan migrate --force && npm install && npm run build",
+        "outputDirectory": "public"
+      }
+    },
+    {
+      "src": "vite.config.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "(.*)",
+      "src": "/(.*)",
       "dest": "public/index.php"
     }
-  ]
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "APP_KEY": "base64:<sua-chave-app-key>",
+    "APP_URL": "https://business-ia-api.vercel.app",
+    "DATABASE_URL": "postgresql://<usuário>:<senha>@<host>.neon.tech:<porta>/<nome_do_banco>?sslmode=require&connect_timeout=10"
+  }
 }
-
-
