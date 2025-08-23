@@ -6,7 +6,7 @@
       "src": "public/index.php",
       "use": "@vercel/static-build",
       "config": {
-        "installCommand": "apt-get update && apt-get install -y php php-pgsql php-mbstring php-xml php-bcmath && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && composer install",
+        "installCommand": "curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && composer install",
         "buildCommand": "php artisan migrate --force && npm install && npm run build",
         "outputDirectory": "public"
       }
