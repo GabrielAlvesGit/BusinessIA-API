@@ -3,15 +3,15 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.7.1" }
-    },
+    "api/index.php": { "runtime": "vercel-php@0.7.1" }
+  },
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php",
-            "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
-        }
-    ],
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php",
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+    }
+  ],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
