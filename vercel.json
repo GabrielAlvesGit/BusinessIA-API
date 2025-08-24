@@ -11,15 +11,10 @@
             "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
         }
     ],
-    "outputDirectory": "public/build",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
-        "APP_URL": "https://business-ia-api.vercel.app",
-        "APP_KEY": "base64:tQt7i3IeCSOqoFCnpeoR+e+muQHBezYPbcwS/rzeCQg=",
-        "DB_CONNECTION": "pgsql",
-        "DB_URL": "postgresql://postgres.elhydpizspnwtxkzaddv:vDd0lVZmZB9Gx3St@aws-1-sa-east-1.pooler.supabase.com:5432/postgres?sslmode=require",
-        "DB_SCHEMA": "laravel",
+        "APP_URL": "http://localhost",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",

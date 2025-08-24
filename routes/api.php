@@ -23,10 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('users', UserController::class);
-Route::apiResource('orders', OrderController::class);
-Route::apiResource('products', ProductController::class);
-Route::apiResource('categories', CategoryController::class);
+
+Route::apiResource('/users', UserController::class);
+
 
 Route::get('/test-vercel', function () {
     return [1, 3, 5];
