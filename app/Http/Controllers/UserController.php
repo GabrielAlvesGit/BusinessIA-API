@@ -16,13 +16,18 @@ class UserController extends Controller
      */
 public function index(Request $request)
 {
-    $currentPage = $request->get('current_page') ?? 1;
-    $regsPerPage = 3;
-    $skip = ($currentPage - 1) * $regsPerPage;
-    $users = User::skip($skip)->take($regsPerPage)->orderByDesc('id')->get();
-    return new \App\Http\Resources\UserCollection($users);
+    try {
+        $currentPage = $request->get('current_page') ?? 1;
+        $regsPerPage = 3;
+        $skip = ($currentPage - 1) * $regsPerPage;
+        $users = User::skip($skip)->take($regsPerPage)->orderByDesc('id')->get();
+        \Log::info('Users retrieved successfully', ['count' => $users->count()]);
+        return new \App\Http\Resources\UserCollection($users);
+    } catch (\Exception $e) {
+        \Log::error('Error retrieving users', ['error' => $e->getMessage()]);
+        return response()->json(['error' => 'Failed to retrieve users', 'message' => $e->getMessage()], 500);
+    }
 }
-
     /**
      * Store a newly created resource in storage.
      * ======== Cadastro do usuário ========
