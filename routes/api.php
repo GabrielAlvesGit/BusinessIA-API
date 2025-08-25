@@ -3,4 +3,8 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/users', [UserController::class, 'index']);
+// <! ----- IGNORE - Rotas de teste --- -->
+// Route::get('/users', [UserController::class, 'index']);
+// Route::post('/users', [UserController::class, 'store']);
+
+Route::apiResource('/users', UserController::class);
