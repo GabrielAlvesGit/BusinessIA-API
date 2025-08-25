@@ -14,18 +14,14 @@ class UserController extends Controller
      * Display a listing of the resource.
      * ======== Listar todos os usuários ========
      */
-    public function index(Request $request)
-    {
-        // $users = User::all();
-        $currentPage = $request->get('current_page') ?? 1; // Fazendo o esquema de navegação de lista,
-        $regsPerPage =  3;  // Registros por página
-
-        $skip = ($currentPage - 1) * $regsPerPage; // pagina 1 = 0 --- 2 = 3
-
-        $users = User::skip($skip)->take($regsPerPage)->orderByDesc('id')->get();
-
-        return response()->json($users->toResourceCollection(), 200);
-    }
+public function index(Request $request)
+{
+    $currentPage = $request->get('current_page') ?? 1;
+    $regsPerPage = 3;
+    $skip = ($currentPage - 1) * $regsPerPage;
+    $users = User::skip($skip)->take($regsPerPage)->orderByDesc('id')->get();
+    return new \App\Http\Resources\UserCollection($users);
+}
 
     /**
      * Store a newly created resource in storage.
